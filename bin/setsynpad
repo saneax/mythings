@@ -1,0 +1,10 @@
+#!/bin/bash
+synclient PalmDetect=1
+#Option "PalmDetect" "1"
+synclient PalmMinWidth=10
+#Option "PalmMinWidth" "10"
+synclient PalmMinZ=200
+#Option "PalmMinZ" "200"
+
+killall syndaemon
+syndaemon -t -k -i 2 -d &

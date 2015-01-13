@@ -1,0 +1,9 @@
+#!/bin/bash
+set -x
+i=1; 
+while [ 1 ]; 
+	do curl http://repoadmin.bida.loc/ 2>/dev/null; 
+	echo $i; 
+	i=$((i+1)); 
+	sleep 30; 
+done

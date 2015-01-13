@@ -1,0 +1,9 @@
+nm-applet &
+gnome-sound-applet &
+xscreensaver &
+`gnome-keyring-daemon`
+#echo "starting tor - please auth on the browser"
+#sudo service tor stop
+#sleep 2
+#sudo service tor start
+

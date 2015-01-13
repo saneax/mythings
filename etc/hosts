@@ -1,0 +1,86 @@
+127.0.0.1	localhost
+127.0.1.1	bajrang.lo	bajrang
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+#49.45.0.1  demo.jio.com
+#66.151.181.49 demo.jio.com
+
+172.16.10.101   vpn-server
+172.16.10.102   trusty-devstack
+172,16.10.111	precise-devstack
+172.16.10.30    node1
+172.16.10.31    node2
+172.16.10.32    node3
+172.16.10.33    node4
+172.16.10.34    node5
+#49.40.3.55      bugs.jiocloud.com
+
+#openstack cluster
+172.16.10.21    cont1
+172.16.10.22    net1
+172.16.10.23    node1
+172.16.10.24    node2
+
+
+#provm
+172.16.11.25    nd3
+172.16.11.24    nd2
+172.16.11.23    nd1
+172.16.11.22    nt1
+172.16.11.21    ct1
+
+
+#VPN HOSTS
+10.135.121.107 i2.mu.jio i2
+10.135.120.106 z1.mu.jio z1
+10.135.120.138 z2.mu.jio z2
+
+#10.135.121.109 reposerver.mu.jio reposerver
+#New Bugzilla and Twiki Instances
+10.135.81.141  twiki
+10.135.81.142  bugzilla
+
+#Hadoop Cluster
+10.135.81.151  nnrm0 nnrm0.san.loc
+10.135.81.150  nnrm1 nnrm1.san.loc
+10.135.81.149  nnrm2 nnrm2.san.loc
+10.135.81.148  dnnm0 dnnm0.san.loc
+10.135.81.147  dnnm1 dnnm1.san.loc
+10.135.81.146  dnnm2 dnnm2.san.loc
+10.135.81.129  gw0 gw0.san.loc
+10.135.80.121  gw1 gw1.san.loc
+
+
+
+#openstack cluster vms
+10.135.81.78    repoadmin repoadmin.bida.loc
+10.135.81.91    gaw0 gaw0.bida.loc
+10.135.81.90    gaw1 gaw1.bida.loc
+
+
+#sensu server
+10.135.81.195   sensu-server sensu-server.bida.loc
+10.135.81.248   sensu-client sensu-client.bida.loc
+10.135.81.249   sensu-dstack sensu-dstack.bida.loc   
+10.135.81.209   sensu-os sensu-os.bida.loc
+10.135.81.206   consul-server consul.server.bida.loc
+10.135.82.146	sentry1 sentry1.bida.loc
+10.135.82.145   sentry2 sentry2.bida.loc
+
+#baremetal
+10.135.123.76   btest1
+10.135.123.78   btest2
+10.135.123.16   btest3
+
+#bugzilla and twiki
+10.135.81.141 twiki twiki.jiocloud.com
+10.135.81.142 bugs bugs.jiocloud.com
+
+
+#sentry server
+10.135.82.145 sentry-2
+10.135.82.146 sentry-1

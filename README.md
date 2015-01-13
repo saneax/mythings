@@ -1,2 +1,4 @@
-# mythings
-justmythings
+sanjayu
+=======
+
+Personal Setting and scripts

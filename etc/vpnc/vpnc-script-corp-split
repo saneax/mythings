@@ -1,0 +1,41 @@
+#!/bin/sh
+# Add one IP to the list of split tunnel
+add_ip ()
+{
+	export CISCO_SPLIT_INC_${CISCO_SPLIT_INC}_ADDR=$1
+	export CISCO_SPLIT_INC_${CISCO_SPLIT_INC}_MASK=255.255.255.0
+	export CISCO_SPLIT_INC_${CISCO_SPLIT_INC}_MASKLEN=24
+	export CISCO_SPLIT_INC=$(($CISCO_SPLIT_INC + 1))
+}
+
+# Initialize empty split tunnel list
+export CISCO_SPLIT_INC=0
+
+# Delete DNS info provided by VPN server to use internet DNS
+# Comment following line to use DNS beyond VPN tunnel
+unset INTERNAL_IP4_DNS
+
+# List of IPs beyond VPN tunnel
+add_ip 10.204.20.0	# ILO
+add_ip 10.137.9.0	# VPN Network
+add_ip 10.135.98.0      # VM network
+add_ip 10.135.96.0	# VM network
+add_ip 10.135.120.0     # VM network
+add_ip 10.135.121.0	# VM network
+add_ip 10.135.81.0      # private cloud floating IP
+add_ip 10.135.82.0      # private cloud floating IP
+add_ip 10.135.83.0      # private cloud floating IP
+add_ip 10.135.80.0	# private cloud flaoting IP
+add_ip 10.70.4.0        #HPSM TEST BED IP
+add_ip 10.136.4.0       #HPSM REAL NETWORK
+<<<<<<< HEAD
+=======
+add_ip 10.137.255.0	#HPSM network dig +short servicemanager.oss.jio.com
+>>>>>>> 3f035219351bbc64675c5b0ba534c782eb03d850
+add_ip 10.135.63.0      #Private Cloud dashboard
+add_ip 10.135.123.0     #public cloud baremetal
+add_ip 10.135.126.0
+add_ip 10.135.160.0     #load balancer IP
+
+# Execute default script
+. /etc/vpnc/vpnc-script
