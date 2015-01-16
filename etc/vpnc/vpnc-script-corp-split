@@ -28,10 +28,7 @@ add_ip 10.135.83.0      # private cloud floating IP
 add_ip 10.135.80.0	# private cloud flaoting IP
 add_ip 10.70.4.0        #HPSM TEST BED IP
 add_ip 10.136.4.0       #HPSM REAL NETWORK
-<<<<<<< HEAD
-=======
 add_ip 10.137.255.0	#HPSM network dig +short servicemanager.oss.jio.com
->>>>>>> 3f035219351bbc64675c5b0ba534c782eb03d850
 add_ip 10.135.63.0      #Private Cloud dashboard
 add_ip 10.135.123.0     #public cloud baremetal
 add_ip 10.135.126.0
