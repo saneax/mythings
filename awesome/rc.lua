@@ -276,16 +276,16 @@ globalkeys = awful.util.table.join(
 
     -- custom keys
     awful.key({ "modkey", "Control" }, "l", function () awful.util.spawn("xscreensaver-command --lock") end),
-    awful.key( { "Shift", "Alt" }, "p", function ()  awful.util.spawn("rhythmbox-client --no-start --play-pause", false) end),
-    awful.key( { "Shift", "Alt" }, "Right", function ()  awful.util.spawn("rhythmbox-client --no-start --next", false) end),
-    awful.key( { "Shift", "Alt" }, "Left", function ()  awful.util.spawn("rhythmbox-client --no-start --previous", false) end),
-    awful.key({ "Shift", "Alt" }, "Up", function ()  awful.util.spawn("rhythmbox-client --no-start --volume-up", false) end),
-    awful.key({ "Shift", "Alt" }, "Down", function ()  awful.util.spawn("rhythmbox-client --no-start --volume-down", false) end),
-    awful.key({ "Shift", "Alt" }, "1", function ()  awful.util.spawn("rhythmbox-client --set-rating 1", false) end),
-    awful.key({ "Shift", "Alt" }, "2", function ()  awful.util.spawn("rhythmbox-client --set-rating 2", false) end),
-    awful.key({ "Shift", "Alt" }, "3", function ()  awful.util.spawn("rhythmbox-client --set-rating 3", false) end),
-    awful.key({ "Shift", "Alt" }, "4", function ()  awful.util.spawn("rhythmbox-client --set-rating 4", false) end),
-    awful.key({ "Shift", "Alt" }, "5", function ()  awful.util.spawn("rhythmbox-client --set-rating 5", false) end),
+    awful.key( { "Control", "Shift" }, "p", function ()  awful.util.spawn("rhythmbox-client --no-start --play-pause", false) end),
+    awful.key( { "Control", "Shift" }, "Right", function ()  awful.util.spawn("rhythmbox-client --no-start --next", false) end),
+    awful.key( { "Control", "Shift" }, "Left", function ()  awful.util.spawn("rhythmbox-client --no-start --previous", false) end),
+    awful.key({ "Control", "Shift" }, "Up", function ()  awful.util.spawn("rhythmbox-client --no-start --volume-up", false) end),
+    awful.key({ "Control", "Shift" }, "Down", function ()  awful.util.spawn("rhythmbox-client --no-start --volume-down", false) end),
+    awful.key({ "Control", "Shift" }, "1", function ()  awful.util.spawn("rhythmbox-client --set-rating 1", false) end),
+    awful.key({ "Control", "Shift" }, "2", function ()  awful.util.spawn("rhythmbox-client --set-rating 2", false) end),
+    awful.key({ "Control", "Shift" }, "3", function ()  awful.util.spawn("rhythmbox-client --set-rating 3", false) end),
+    awful.key({ "Control", "Shift" }, "4", function ()  awful.util.spawn("rhythmbox-client --set-rating 4", false) end),
+    awful.key({ "Control", "Shift" }, "5", function ()  awful.util.spawn("rhythmbox-client --set-rating 5", false) end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
