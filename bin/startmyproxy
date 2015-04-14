@@ -1,1 +1,1 @@
-ssh -C2 -D 1080 sanjayu@m2.cloudtrek.in
+ssh -C2 -D 1080 sanjayu@ssh.cloudtrek.in

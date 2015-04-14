@@ -1,9 +1,23 @@
 #!/bin/bash
-set -x
-i=1; 
-while [ 1 ]; 
-	do curl http://repoadmin.bida.loc/ 2>/dev/null; 
-	echo $i; 
-	i=$((i+1)); 
-	sleep 30; 
+#set -x
+
+usage=$(cat <<'EOF'
+keepsess hostname sleeptime
+hostname is the http://{hostname}
+sleeptime, is the mean time you wish to sleep in between polls
+EOF)
+
+if [ $# -ne 2 ]; then
+  echo $usage
+  exit 1;
+fi
+
+i=1;
+
+while [ 1 ]; do
+  echo "Connecting to $1";
+  curl http://$1/ 2>/dev/null;
+	echo $i;
+	i=$((i+1));
+	sleep $2;
 done
