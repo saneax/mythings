@@ -88,7 +88,7 @@ Puppet Module :: OpenStack Version :: OpenStack Codename
 3. [controller](https://github.com/puppetlabs/puppetlabs-openstack/blob/master/manifests/role/controller.pp)
 4. [network](https://github.com/puppetlabs/puppetlabs-openstack/blob/master/manifests/role/network.pp)
 5. [storage](https://github.com/puppetlabs/puppetlabs-openstack/blob/master/manifests/role/storage.pp)
-6. [tempes](https://github.com/puppetlabs/puppetlabs-openstack/blob/master/manifests/role/tempest.pp)
+6. [tempest](https://github.com/puppetlabs/puppetlabs-openstack/blob/master/manifests/role/tempest.pp)
 
 
 
