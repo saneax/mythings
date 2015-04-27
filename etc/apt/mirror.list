@@ -29,7 +29,8 @@ deb-amd64 http://in.archive.ubuntu.com/ubuntu precise-backports main restricted 
 deb-amd64 http://mirror.cse.iitk.ac.in/debian/ stable main contrib non-free
 deb-amd64 http://mirror.cse.iitk.ac.in/debian/ wheezy-updates main contrib non-free
 deb-amd64 http://security.debian.org/ wheezy/updates main contrib non-free
-
+deb-amd64 http://mirror.cse.iitk.ac.in/debian/ jessie-updates main contrib non-free
+deb-amd64 http://security.debian.org/ jessie/updates main contrib non-free
 
 deb-amd64 http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/icehouse main
 deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/icehouse main
