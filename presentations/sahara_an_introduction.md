@@ -5,15 +5,16 @@
 - Sahara project aims to provide users with simple means to provision a Hadoop cluster at OpenStack
 -
 -
-- <right> by sanjay upadhyay 
-- @saneax 
+- <right> by sanjay upadhyay
+- @saneax
 
 
 ---
 
-## Architecture 
+### Architecture
 
-[drawing]: ./pictures/openstack-interop.png
+![alt text][drawing]
+[drawing]: pictures/openstack-interop.png "Sahara Architecture"
 
 ---
 
@@ -34,20 +35,42 @@
 
 ---
 
-## What is hadoop
+## What is hadoop?
 
+- It is a framework
+- Written in Java
+- For (large datasets)
+  - Distributed storage, known as HDFS
+  - Distributed processing known as yarn/MR
+- Built for commodity hardware.
+- Framework takes care of hardware failure
 
 ---
 
 ## What is Openstack
 
+- It is an IAAS framework
+- has a modular architecture with compute, storage, networking, imaging etc modeules
+- Written in python
+
 ---
 
-## What is PAAS
+## What is AWS EMR?
+
+- AWS EMR stands for Amazon web services - Elastic Map reduce
+- Its Hadoop services and ecosystem above AWS
+- AWS had 'Elastic Map Reduce' from early 2012
+
+![alt text][awsemr]
+
+[awsemr]: pictures/emr-services-diagram.png "AWS EMR Architecture"
 
 ---
 
-## hadoop as a service
+## What is Sahara and Why?
+
+- Amazon's EMR offering has a large no. of users 
+
 
 ---
 
