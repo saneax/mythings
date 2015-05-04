@@ -33,6 +33,7 @@ add_ip 10.135.63.0      #Private Cloud dashboard
 add_ip 10.135.123.0     #public cloud baremetal
 add_ip 10.135.126.0
 add_ip 10.135.160.0     #load balancer IP
+add_ip 10.137.160.0     #net-ext3 network on private cloud
 add_ip 10.135.60.0      # Mirantis Management network (fuel node)
 add_ip 10.204.113.0     # ILO
 add_ip 10.140.193.0     # ceph nodes
