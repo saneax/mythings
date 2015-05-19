@@ -14,3 +14,6 @@
 #	insteadOf = git://github.com/
 #[url "git://github.com/"]
 #	insteadOf = https://github.com/
+[gitreview]
+	username = saneax
+	username = saneax
