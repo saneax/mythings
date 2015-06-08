@@ -1,5 +1,5 @@
-[user]  
-	        email = saneax@gmail.com
+[user]
+	  email = saneax@gmail.com
 		name = Sanjay Upadhyay
 [alias]
 	  co = checkout
@@ -17,3 +17,5 @@
 [gitreview]
 	username = saneax
 	username = saneax
+[push]
+	default = simple
