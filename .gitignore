@@ -1,4 +1,5 @@
 .ssh/*
+.gnupg/*
 keys/*
 tmp
 phantomjs
