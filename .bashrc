@@ -117,3 +117,5 @@ RED=$'\e[0;31m'
 
 export PS1='[${RED}\u${D}@${RED}\h:${GREEN}\w${D}]${VIOLET}$(__git_ps1 "(⎇ %s)")${GREEN}\$ ${D}\n'
 
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

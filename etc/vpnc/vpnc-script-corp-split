@@ -25,6 +25,8 @@ add_ip 10.135.121.0	# VM network
 add_ip 10.135.81.0      # private cloud floating IP
 add_ip 10.135.82.0      # private cloud floating IP
 add_ip 10.135.83.0      # private cloud floating IP
+add_ip 10.135.84.0      # private cloud floating IP
+add_ip 10.135.85.0      # private cloud floating IP
 add_ip 10.135.80.0	# private cloud flaoting IP
 add_ip 10.70.4.0        #HPSM TEST BED IP
 add_ip 10.136.4.0       #HPSM REAL NETWORK
@@ -37,5 +39,6 @@ add_ip 10.137.160.0     #net-ext3 network on private cloud
 add_ip 10.135.60.0      # Mirantis Management network (fuel node)
 add_ip 10.204.113.0     # ILO
 add_ip 10.140.193.0     # ceph nodes
+add_ip 10.140.96.0      # EC2 Environment
 # Execute default script
 . /etc/vpnc/vpnc-script

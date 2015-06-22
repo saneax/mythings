@@ -13,36 +13,40 @@ set _tilde 0
 #
 ############# end config ##############
 
+#trusty
 deb-amd64 http://in.archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
-deb-amd64 http://in.archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+#deb-amd64 http://in.archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
 deb-amd64 http://in.archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
 deb-amd64 http://in.archive.ubuntu.com/ubuntu trusty-proposed main restricted universe multiverse
 deb-amd64 http://in.archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse
 
-deb-amd64 http://in.archive.ubuntu.com/ubuntu precise main restricted universe multiverse
-deb-amd64 http://in.archive.ubuntu.com/ubuntu precise-security main restricted universe multiverse
-deb-amd64 http://in.archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse
-deb-amd64 http://in.archive.ubuntu.com/ubuntu precise-proposed main restricted universe multiverse
-deb-amd64 http://in.archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse
-
-
+#debian jessie
 deb-amd64 http://mirror.cse.iitk.ac.in/debian/ stable main contrib non-free
-deb-amd64 http://mirror.cse.iitk.ac.in/debian/ wheezy-updates main contrib non-free
-deb-amd64 http://security.debian.org/ wheezy/updates main contrib non-free
 deb-amd64 http://mirror.cse.iitk.ac.in/debian/ jessie-updates main contrib non-free
+
+#debian-security
 deb-amd64 http://security.debian.org/ jessie/updates main contrib non-free
 
-deb-amd64 http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/icehouse main
-deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/icehouse main
-
-
+#ubuntu-cloud repo for trusty (default is icehouse)
 deb-amd64 http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/juno main
 deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/juno main
 
-deb-amd64 http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main
-deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/cloud-tools main
+#ubuntu cloud repo for trusty kilo
+deb-amd64 http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/kilo main
+deb-src http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/kilo main
 
-deb http://apt.puppetlabs.com precise main
-deb http://apt.puppetlabs.com trusty main
+#md64puppetlabs for precise and trusty, debian wheezy
+deb-amd64 http://apt.puppetlabs.com trusty main
+deb-amd64 http://apt.puppetlabs.com trusty dependencies
+deb-amd64 http://apt.puppetlabs.com jessie main
+deb-amd64 http://apt.puppetlabs.com jessie dependencies
+
+#ubuntu trusty security
+deb-amd64 http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+#deb-amd64 http://security.ubuntu.com/ubuntu trusty-security universe
+
+
+
+#deb http://apt.puppetlabs.com trusty main
 
 #clean http://in.archive.ubuntu.com/ubuntu

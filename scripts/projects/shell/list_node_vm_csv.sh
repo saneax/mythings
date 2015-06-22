@@ -1,4 +1,4 @@
-#!/bin/bash -x
+i#!/bin/bash
 
 source /root/openrc
 tdir=`mktemp -d`
@@ -23,11 +23,22 @@ logger `head ${ftdump}`
 
 #get tenantlist wise vm
 ftwise="${tdir}/vm.dump"
+ftemp="${tdir}/t.dump"
+touch ${ftemp}
 touch ${ftwise}
 for i in `cat ${ftdump}`
 do
-        echo "${tenant_name} => ${i}" >> ${ftwise}
-        ${NOVA} --insecure show --minimal 97a10d47-0fbe-492d-8c4e-d8d6b72c2fc5 | cut -d '|' -f 2,3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'  >> ${ftwise}
+        #echo "${tenant_name} => ${i}" >> ${ftwise}
+        #echo -n "${i}," >> ${ftwise}
+        ${NOVA} --insecure show --minimal ${i} > ${ftemp}
+        host=`cat ${ftemp} |  egrep 'OS-EXT-SRV-ATTR:host' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'`
+        sstatus=`cat ${ftemp} |  egrep '\sstatus\s+' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'`
+        name=`cat ${ftemp} |  egrep '\sname\s+' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'`
+        updated=`cat ${ftemp} |  egrep '\supdated\s+' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'`
+        key=`cat ${ftemp} |  egrep '\skey_name\s+' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'`
+        tenant=`cat ${ftemp} |  egrep '\stenant_id\s+' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g'`
+        ip=`cat ${ftemp} |  egrep 'network\s+' |cut -d '|' -f 3 | grep -v '+--' | tr '|' ',' | sed 's/\s*//g' | tr '\n' ',' | sed 's/,$//'`
+        echo "${i},${host},${updated},${sstatus},${name},${key},${tenant},${ip}" | tee -a ${ftwise}
 done
 
 #debug
@@ -38,4 +49,5 @@ chown reliance:root ~reliance/VMDETAILS_ARCH/*
 
 #Remove the tempdir
 rm -rf ${tdir}
+
 
