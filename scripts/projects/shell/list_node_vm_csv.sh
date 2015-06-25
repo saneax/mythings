@@ -1,4 +1,4 @@
-i#!/bin/bash
+#!/bin/bash
 
 source /root/openrc
 tdir=`mktemp -d`
@@ -42,12 +42,9 @@ do
 done
 
 #debug
-logger `head ${ftwise}`
-
-cp ${ftwise} ~reliance/VMDETAILS_ARCH/vm.dump_`date +%H%M_%d%b%g`
-chown reliance:root ~reliance/VMDETAILS_ARCH/*
+scp -i keys/cloudoperations.pem ${ftwise} ubuntu@10.135.83.118:/opt/vminventory/script/data_files/vm.dump 2>&1 | logger -p error
+ssh -i keys/cloudoperations.pem -l ubuntu 10.135.83.118 'ls -l /opt/vminventory/script/data_files/vm.dump' 2>&1 | logger -p error
 
 #Remove the tempdir
 rm -rf ${tdir}
-
 
