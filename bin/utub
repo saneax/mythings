@@ -1,0 +1,60 @@
+#! /usr/bin/python
+# Filename: utub
+# Author: Andrei Ionita <contact@andrei-ionita.com>
+
+import sys
+import os
+import subprocess
+
+
+def main():
+    if len(sys.argv) < 2:
+        print '\nUsage:'
+        print 'utub you_tube_http_link local_songname'
+        print " Example : utub 'http://www.youtube.com/watch?v="\
+              "VMJrvUSaAEA' '/home/userid/Music/ben_harper-thank_me_in_"\
+              "the_morning' "
+        print " for support contact: contact@andrei-ionita.com"
+        sys.exit(1)
+    try:
+        mycwd, songname = os.path.split(sys.argv[2])
+        if not mycwd:
+            mycwd = os.getcwd()
+        elif not os.path.exists(mycwd):
+            os.makedirs(mycwd)
+        print '-> Files will be saved in:' + mycwd
+        print '-> Audio:' + songname + '.mp3'
+        print '-> Video:' + songname + '.flv'
+        # youtube-dl
+        my_command = '/usr/bin/youtube-dl '+sys.argv[1]
+        proc = subprocess.Popen(my_command, bufsize=0, shell=True,
+                                cwd=mycwd)
+        print '-> Running youtube-dl:'
+        proc.communicate()
+        # avconv
+        u2_songname = sys.argv[1].rsplit('?v=')
+        for name in os.listdir(mycwd):
+            if u2_songname[1] in name:
+                u2_songname[1] = name
+        my_command = 'avconv -i "'+u2_songname[1]+'" "'+u2_songname[1]+'.wav"'
+        proc = subprocess.Popen(my_command, bufsize=0, shell=True,
+                                cwd=mycwd)
+        print '-> Running: avconv'
+        proc.communicate()
+        # lame
+        my_command = 'lame "'+u2_songname[1]+'.wav" "'+songname+'.mp3"'
+        proc = subprocess.Popen(my_command, bufsize=0, shell=True,
+                                cwd=mycwd)
+        print '-> Running: lame'
+        proc.communicate()
+        #Clean up
+        os.remove(mycwd+'/'+u2_songname[1]+'.wav')
+        ext = u2_songname[1].rsplit('.')
+        os.rename(mycwd+'/'+u2_songname[1], mycwd+'/'+songname+'.'
+                  + ext[1])
+        print '-> Done!'
+    except:
+        print "Oops: Something really bad happened! :-)"
+
+if __name__ == '__main__':
+    main()

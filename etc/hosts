@@ -95,5 +95,8 @@ ff02::2 ip6-allrouters
 #iperf test server
 10.135.83.153 iperf
 
-#Fuel Node
-10.135.60.35 fuelserver
+#Mirantis Fule node se1 env
+10.135.60.35 fuel1
+
+#Mirantis Fuel node se2 env
+10.140.96.12 fuel2
