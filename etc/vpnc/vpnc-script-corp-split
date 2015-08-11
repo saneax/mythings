@@ -41,5 +41,7 @@ add_ip 10.204.113.0     # ILO
 add_ip 10.140.193.0     # ceph nodes
 add_ip 10.140.96.0      # EC2 Environment
 add_ip 10.79.76.0       # Desktop environment
+add_ip 10.140.96.0      # ec2 nodes
+
 # Execute default script
 . /etc/vpnc/vpnc-script
