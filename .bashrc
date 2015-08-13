@@ -26,7 +26,8 @@ export TSOCKS_USER=''
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
+alias python=python3
+alias dockpy="docker run -v /home/sanjayu/workspace/diveintopython3:/home/sanjayu/workspace/diveintopython3 -it saneax/test-puppet-openstack:0.4 bash"
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar

@@ -43,9 +43,6 @@ deb-amd64 http://apt.puppetlabs.com jessie dependencies
 
 #ubuntu trusty security
 deb-amd64 http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
-#deb-amd64 http://security.ubuntu.com/ubuntu trusty-security universe
-
-
 
 #deb http://apt.puppetlabs.com trusty main
 
