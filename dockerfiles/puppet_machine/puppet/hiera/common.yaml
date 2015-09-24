@@ -1,0 +1,75 @@
+---
+classes:
+  - scontrol
+
+ntp::autoupdate: false
+ntp::enable: true
+ntp::servers:
+  - 0.in.pool.ntp.org
+  - 1.asia.pool.ntp.org
+  - 0.asia.pool.ntp.org
+ntp::restrict:
+  - 127.0.0.1
+
+scontrol::accounts::localusers:
+  sanjayu:
+    realname: 'Sanjay Upadhya'
+    sshkeys: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqqn1SeVuzQIZTski6aeWhH39E7icc35Axb5Hv9E8JXxXmxCIgOk+N9bEVPBB7UQsb7R7gLsbYraeKHNFg9D2n9YPEcUVdBttON2Th5tg/y4nMOxzkoWWLIe9HdrovfpAE+RzA6Ti28zjhddNCsL9ZU5riCJzdI1sXlJD5OmjYMuI+mocAzwh8dHrMrXD5iqzfQoK7FC1XzMuOTwa+so4tZqgeqWStaGgTAfTXmYi/0RIeFG2OXc03khBzLP/gLprlFEHJX4O60gGLEHbfyRk11x+trR9JUobR1FFF0q8JNoeuRW4bKkelCtEGjDry+Qh4yIg4cbBGunlRf3a4VWDqw== sanjayu@partypage-dr'
+
+scontrol::accounts::sudousers: [sanjayu]
+
+apt_mirror_ubuntu_base_url: http:/in.archive.ubuntu.com/
+apt_mirror_puppet_base_url: http://apt.puppetlabs.com
+
+enhancer_packages:
+  - mtr-tiny
+  - tcpdump
+  - screen
+  - vim
+  - emacs23-nox
+  - curl
+  - rsync
+  - git
+  - python-pip
+  - libsensors4-dev
+  - libsensors4
+  - build-essential
+  - python-dev
+  - sysstat
+  - lynx
+
+pip_packages:
+  - Glances
+  - PySensors
+
+scontrol::sources:
+  ubuntu:
+    location: 'http://in.archive.ubuntu.com/ubuntu/'
+    release: 'trusty'
+    repos: 'main restricted universe multiverse'
+    include_src: false
+  ubuntu_updates:
+    location: "http://in.archive.ubuntu.com/ubuntu/"
+    release: 'trusty-updates'
+    repos: 'main restricted universe multiverse'
+    include_src: false
+  ubuntu_security:
+    location: "http://in.archive.ubuntu.com/ubuntu/"
+    release: 'trusty-security'
+    repos: 'main restricted universe multiverse'
+    include_src: false
+  ubuntu_cloud:
+    location: "http://ubuntu-cloud.archive.canonical.com/ubuntu"
+    release: 'trusty-updates/kilo'
+    repos: 'main'
+    key: '5EDB1B62EC4926EA'
+    key_server: 'keyserver.ubuntu.com'
+    include_src: false
+  puppetlabs:
+    location: "http://apt.puppetlabs.com"
+    release: 'trusty'
+    repos: 'main dependencies devel'
+    key: '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30'
+    key_server: 'pgp.mit.edu'
+    include_src: false
+

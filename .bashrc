@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+. ~/bin/git-prompt.sh
 
 # If not running interactively, don't do anything
 case $- in
@@ -25,9 +26,17 @@ export TSOCKS_USER=''
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
+
 shopt -s checkwinsize
+
+
+#ALIASES##
 alias python=python3
+alias vi=vim
 alias dockpy="docker run -v /home/sanjayu/workspace/diveintopython3:/home/sanjayu/workspace/diveintopython3 -it saneax/test-puppet-openstack:0.4 bash"
+alias chrome="docker start pensive_davinci"
+
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
@@ -113,7 +122,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-source /etc/bash_completion.d/password-store
+
+#source /etc/bash_completion.d/password-store
+
 D=$'\e[0;37m'
 VIOLET=$'\e[0;35m'
 GREEN=$'\e[0;32m'
