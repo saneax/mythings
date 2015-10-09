@@ -1,0 +1,143 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+
+Vagrant.configure("2") do |config|
+
+  # Tell Vagrant where would you like to start your VMs (you can also have a
+  # specific per-VM configuration. Do not put this section in case you want to
+  # start your VMs on the same host)
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.host = 'localhost'
+    libvirt.username = 'sanjayu'
+    libvirt.connect_via_ssh = true
+  end
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.include_offline = true
+
+  # Here's our VM confguration
+  config.vm.define :con1 do |machine|
+
+    # It should be an Ubuntu 14.04 box
+    machine.vm.box = "trusty64"
+    machine.vm.hostname = "con1.libvirt.vm"
+
+    # With a public IP (it's optional)
+    machine.vm.network :private_network,
+      :ip => '172.16.44.10'
+
+    machine.vm.network :public_network,
+      :dev => "mybr0",
+      :mode => "bridge",
+      :type => "bridge"
+
+    # With so much RAM and CPUs
+    machine.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 2
+    end
+
+    # Finally, let's provision it by running a script. You can also run
+    # puppet, chef, ansible, and others. Check the Vagrant website for
+    # details.
+    # machine.vm.provision :shell, path: "bootstrap.sh", args: "42", keep_color: true
+    config.vm.synced_folder("puppet/", "/etc/puppet/")
+    config.vm.provision 'shell', :inline =>
+      'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
+    config.vm.provision 'shell', :inline =>
+      'puppet apply --debug --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
+  end
+
+  config.vm.define :node1 do |machine|
+
+    # It should be an Ubuntu 14.04 box
+    machine.vm.box = "trusty64"
+    machine.vm.hostname = "node1.libvirt.vm"
+
+    # With a public IP (it's optional)
+    machine.vm.network :private_network,
+      :ip => '172.16.44.11'
+
+    # With so much RAM and CPUs
+    machine.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 2
+      domain.nested = true
+    end
+
+    # Finally, let's provision it by running a script. You can also run
+    # puppet, chef, ansible, and others. Check the Vagrant website for
+    # details.
+    # machine.vm.provision :shell, path: "bootstrap.sh", args: "42", keep_color: true
+    config.vm.synced_folder("puppet/", "/etc/puppet/")
+    config.vm.provision 'shell', :inline =>
+      'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
+    config.vm.provision 'shell', :inline =>
+      'puppet apply --debug --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
+ end
+
+ config.vm.define :node2 do |machine|
+
+    # It should be an Ubuntu 14.04 box
+    machine.vm.box = "trusty64"
+    machine.vm.hostname = "node2.libvirt.vm"
+
+    # With a public IP (it's optional)
+    machine.vm.network :private_network,
+      :ip => '172.16.44.12'
+
+    # With so much RAM and CPUs
+    machine.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 2
+      domain.nested = true
+    end
+
+    # Finally, let's provision it by running a script. You can also run
+    # puppet, chef, ansible, and others. Check the Vagrant website for
+    # details.
+    # machine.vm.provision :shell, path: "bootstrap.sh", args: "42", keep_color: true
+    config.vm.synced_folder("puppet/", "/etc/puppet/")
+    config.vm.provision 'shell', :inline =>
+      'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
+    config.vm.provision 'shell', :inline =>
+      'puppet apply --debug --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
+end
+
+
+  config.vm.define :net1 do |machine|
+
+    # It should be an Ubuntu 14.04 box
+    machine.vm.box = "trusty64"
+    machine.vm.hostname = "net1.libvirt.vm"
+
+    # With a public IP (it's optional)
+    machine.vm.network :private_network,
+      :ip => '172.16.44.14'
+
+    machine.vm.network :public_network,
+      :dev => "mybr0",
+      :mode => "bridge",
+      :type => "bridge"
+    # With so much RAM and CPUs
+    machine.vm.provider :libvirt do |domain|
+      domain.memory = 512
+      domain.cpus = 1
+    end
+
+    # Finally, let's provision it by running a script. You can also run
+    # puppet, chef, ansible, and others. Check the Vagrant website for
+    # details.
+    # machine.vm.provision :shell, path: "bootstrap.sh", args: "42", keep_color: true
+    config.vm.synced_folder("puppet/", "/etc/puppet/")
+    config.vm.provision 'shell', :inline =>
+      'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
+    config.vm.provision 'shell', :inline =>
+      'puppet apply --debug --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
+ end
+
+
+end
+
