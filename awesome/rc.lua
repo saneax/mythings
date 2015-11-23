@@ -10,6 +10,9 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+-- initialize vicious
+vicious = require("vicious")
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -41,9 +44,16 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
+
+
+--run once
+awful.util.spawn_with_shell("run_once xscreensaver")
+awful.util.spawn_with_shell("run_once pidgin")
+awful.util.spawn_with_shell("run_once nm-applet")
+
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -112,7 +122,50 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
+-- Initialize widget
+memwidget = awful.widget.progressbar()
+cpuwidget = awful.widget.graph()
+batwidget0 = awful.widget.progressbar()
+batwidget1 = awful.widget.progressbar()
+
+-- Progressbar properties
+memwidget:set_width(20)
+memwidget:set_height(10)
+memwidget:set_vertical(true)
+memwidget:set_background_color("#494B4F")
+memwidget:set_border_color(nil)
+memwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#AECF96"}, {0.5, "#88A175"},
+{1, "#FF5656"}}})
+
+cpuwidget:set_width(50)
+cpuwidget:set_background_color("#494B4F")
+cpuwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#FF5656"}, {0.5, "#88A175"},
+{1, "#AECF96" }}})
+
+batwidget0:set_width(8)
+batwidget0:set_height(10)
+batwidget0:set_vertical(true)
+batwidget0:set_background_color("#494B4F")
+batwidget0:set_border_color(nil)
+batwidget0:set_color({ type = "linear", from = { 0,0 }, to = { 0,10 }, stops = { {0, "#AECF96"}, {0.5, "#88A175"},
+{ 1, "#FF5656" }}})
+
+batwidget1:set_width(8)
+batwidget1:set_height(10)
+batwidget1:set_vertical(true)
+batwidget1:set_background_color("#494AB4F")
+batwidget1:set_border_color(nil)
+batwidget1:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 }, stops = { {0, "#AECF96"}, {0.5, "#88A175"},
+{ 1, "#FF5656" }}})
+
+-- Register widget
+vicious.register(memwidget, vicious.widgets.mem, "$1", 13)
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
+vicious.register(batwidget0, vicious.widgets.bat, "$2", 61, "BAT0")
+vicious.register(batwidget1, vicious.widgets.bat, "$2", 61, "BAT1")
+
 -- Create a wibox for each screen and add it
+
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
@@ -182,7 +235,8 @@ for s = 1, screen.count() do
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
 
-    -- Widgets that are aligned to the left
+   -- Widgets that are aligned to the left
+
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
@@ -191,6 +245,10 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(cpuwidget)
+    right_layout:add(memwidget)
+    right_layout:add(batwidget1)
+    right_layout:add(batwidget0)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -233,7 +291,7 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 2) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
@@ -260,8 +318,41 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
+    -- custom keys
+    awful.key( { "Control", "Shift" }, "l", function ()
+      awful.util.spawn("xscreensaver-command --lock") end),
+    awful.key( { "Control", "Shift" }, "p", function ()
+      awful.util.spawn("rhythmbox-client --no-start --play-pause", false) end),
+    awful.key( { "Control", "Shift" }, "Right", function ()
+      awful.util.spawn("rhythmbox-client --no-start --next", false) end),
+    awful.key( { "Control", "Shift" }, "Left", function ()
+      awful.util.spawn("rhythmbox-client --no-start --previous", false) end),
+    awful.key({ "Control", "Shift" }, "Up", function ()
+      awful.util.spawn("rhythmbox-client --no-start --volume-up", false) end),
+    awful.key({ "Control", "Shift" }, "Down", function ()
+      awful.util.spawn("rhythmbox-client --no-start --volume-down", false) end),
+    awful.key({ "Control", "Shift" }, "1", function ()
+      awful.util.spawn("rhythmbox-client --set-rating 1", false) end),
+    awful.key({ "Control", "Shift" }, "2", function ()
+      awful.util.spawn("rhythmbox-client --set-rating 2", false) end),
+    awful.key({ "Control", "Shift" }, "3", function ()
+      awful.util.spawn("rhythmbox-client --set-rating 3", false) end),
+    awful.key({ "Control", "Shift" }, "4", function ()
+      awful.util.spawn("rhythmbox-client --set-rating 4", false) end),
+    awful.key({ "Control", "Shift" }, "5", function ()
+      awful.util.spawn("rhythmbox-client --set-rating 5", false) end),
+
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+
+    -- Bind Print Screen
+    awful.key(
+          {},
+          "Print",
+          function()
+          awful.util.spawn("capscr",false)
+          end
+        ),
 
     awful.key({ modkey }, "x",
               function ()
@@ -289,7 +380,7 @@ clientkeys = awful.util.table.join(
         end),
     awful.key({ modkey,           }, "m",
         function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
+          c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end)
 )

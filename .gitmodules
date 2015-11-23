@@ -1,0 +1,9 @@
+[submodule "scripts/projects/ruby/viddl-rb"]
+	path = scripts/projects/ruby/viddl-rb
+	url = https://github.com/rb2k/viddl-rb
+[submodule "scripts/projects/ruby/ruby_koans"]
+	path = scripts/projects/ruby/ruby_koans
+	url = https://github.com/neo/ruby_koans
+[submodule "scripts/projects/ruby/aviator"]
+	path = scripts/projects/ruby/aviator
+	url = https://github.com/saneax/aviator
