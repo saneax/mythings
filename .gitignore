@@ -3,5 +3,4 @@
 .keys/*
 tmp
 phantomjs
-.bashrc
 *.log
