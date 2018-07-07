@@ -1,6 +1,6 @@
 [user]
-	  email = saneax@gmail.com
-		name = Sanjay Upadhyay
+	email = supadhya@redhat.com
+	name = Sanjay Upadhyay
 [alias]
 	  co = checkout
 	  ci = commit
@@ -16,6 +16,12 @@
 #	insteadOf = https://github.com/
 [gitreview]
 	username = saneax
-	username = saneax
 [push]
 	default = simple
+[color]
+	ui = auto
+[git]
+	username = saneax
+[diff]
+	renamelimit = 2000
+	renames = true
